@@ -1,8 +1,43 @@
 // TaskForge v0 - Do Código ao Contrato
 // Código final da aula 1.2: entrada validada, status e cartão da tarefa.
 
+import exercicios.modulo02.aula01.desafio.Tarefa;
+import exercicios.modulo02.aula01.exercicios.Aluno;
+import exercicios.modulo02.aula01.exercicios.ContaBancaria;
+import exercicios.modulo02.aula01.exercicios.Livro;
+import exercicios.modulo02.aula01.exercicios.Retangulo;
+
 void main() {
     IO.println("=== TaskForge v0 ===");
+
+    // (-------------------------------- Desafio ----------------------------------)
+    Tarefa desafio = new Tarefa("Estudar", "Java", 1, "Douglas", 4.0, 1);
+    Tarefa desafio2 = new Tarefa("Desafio", "React", 2, "Outro", 5.0, 2);
+    desafio.imprimirCartao();
+    IO.println("");
+    desafio2.imprimirCartao();
+
+    /* (------------------- Conta bancaria(Incompleto) ---------)
+    ContaBancaria c = new ContaBancaria("Ana", 0);
+
+    (-----------------------Boletim aluno---------------------)
+    Aluno m = new Aluno(7.5, 9.0);
+    m.media();
+
+
+    (------------------------Retangulo -----------------------)
+    Retangulo r = new Retangulo(4, 3);
+    r.area();
+    r.perimetro();
+
+    (------------------------- Livro -------------------------)
+    Livro l = new Livro("Java Fácil", 200);
+    IO.println(l.getTitulo() + " tem " + l.getPaginas() + " páginas");
+
+    l.descrever();
+
+    IO.println(l.getTitulo());
+    (----------------------- Codigo aula 2.1 -----------------------------------)
 
     Tarefa tarefa = new Tarefa("Nome Tarefa", "Descrição Tarefa", 1, "Douglas",
             1.0,  2, "Em andamento" );
@@ -13,6 +48,7 @@ void main() {
     IO.println("A tarefa foi criada: " + tarefa.getNome());
     IO.println("Nova tarefa criada: " + tarefa2.getNome());
 
+   (-------------------- Codigo original ------------------------)
 
     String nome = IO.readln("Nome da tarefa: ");
     String descricao = IO.readln("Descrição: ");
@@ -62,5 +98,5 @@ void main() {
     }
 
     IO.println("Status:    " + statusNome);
-    IO.println("---------------------------");
+    IO.println("---------------------------"); */
 }
