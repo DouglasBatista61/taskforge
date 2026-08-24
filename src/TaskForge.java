@@ -1,8 +1,6 @@
 // TaskForge v0 - Do Código ao Contrato
 // Código final da aula 1.2: entrada validada, status e cartão da tarefa.
 
-import src.Tarefa;
-
 void main() {
     IO.println("=== TaskForge v0 ===");
 
