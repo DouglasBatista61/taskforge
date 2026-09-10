@@ -37,7 +37,7 @@ public class Desafio {
 
         IO.println("");
         IO.println("------ TAREFA CRIADA ------");
-        IO.println("Tarefa:     " + nome);
+        IO.println("model.Tarefa:     " + nome);
         IO.println("Descrição:  " + descricao);
         IO.print("Prioridade: ");
         for (int aux = 0; aux < prioridade; aux++) {
