@@ -22,16 +22,21 @@ public abstract class Tarefa {
         this.status = status;
     }
 
+    public Tarefa() {
+
+    }
+
     // Cada filha e OBRIGADA a dizer qual e o seu tipo.
     public abstract String tipo();
 
-    public void resumo() {
+    public int resumo() {
         IO.println("Resumo da " + tipo());
         IO.println("model.Tarefa: " + this.nome);
         IO.println("Descricão: " + this.descricao);
         IO.println("Prioridade: " + this.prioridade);
         IO.println("Responsável: " + this.responsavel);
         IO.println("Status: " + this.status.getDescricao());
+        return 0;
     }
 
     public String getNome() { return nome; }
@@ -51,4 +56,6 @@ public abstract class Tarefa {
 
     public TarefaStatus getStatus() { return status; }
     public void setStatus(TarefaStatus status) { this.status = status; }
+
+
 }

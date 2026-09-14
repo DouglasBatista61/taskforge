@@ -1,0 +1,19 @@
+ copiar e colar no main(TaskForge).
+
+ List<String> compras = new ArrayList<>();
+    compras.add("Arroz");
+    compras.add("Feijão");
+    compras.add("Café");
+    compras.add("Pão");
+
+    compras.remove(0);
+    IO.println("Depois do remove(0): " + compras.size() + " itens");
+    for (String item : compras) {
+        IO.println("- " + item);
+    }
+
+    compras.remove("Café");
+    IO.println("Depois do remove(Café): " + compras.size() + " itens");
+    for (String item : compras) {
+        IO.println("- " + item);
+    }

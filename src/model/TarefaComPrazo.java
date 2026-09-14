@@ -15,9 +15,10 @@ public class TarefaComPrazo extends Tarefa implements Notificavel {
     }
 
 
-    public void resumo() {
+    public int resumo() {
         super.resumo();
         IO.println("Tempo limite: " + this.tempoLimite);
+        return 0;
     }
 
     public String notificar() {
