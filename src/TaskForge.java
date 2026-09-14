@@ -2,22 +2,77 @@
 // Código final da aula 3.2: EXCEÇÕES + LAMBDAS + STREAMS.
 // Agora o programa nao quebra mais na cara do usuario.
 
+import model.Tarefa;
+import model.TarefaComPrazo;
+import model.TarefaSimples;
+import model.TarefaStatus;
 
-import exercicios.modulo02.aula02.desafio.TarefaRecorrente;
-import model.*;
+import java.util.List;
+import java.util.ArrayList;
+
 
 void main() {
-
     List<Tarefa> listaTarefa = new ArrayList<>();
+
+    listaTarefa.add(new TarefaComPrazo("Treinar", "Musculação", 2,"Douglas",
+            2,TarefaStatus.CONCLUIDA,2));
+    listaTarefa.add(new TarefaSimples("Ir ao mercado", "Fazer compras", 2,"Douglas",
+            2, TarefaStatus.PENDENTE));
+    listaTarefa.add(new TarefaComPrazo("Estudar Java", "Modulo 4", 1, "Douglas",
+            8,TarefaStatus.EM_ANDAMENTO, 8));
+    listaTarefa.add(new TarefaComPrazo("Entregar PR", "Modulo 3", 1, "Douglas",
+            8, TarefaStatus.EM_ANDAMENTO, 8));
+
+    IO.println("Total de tarefas: " + listaTarefa.size());
+    for(Tarefa t : listaTarefa){
+        IO.println("");
+        t.resumo();
+    }
+}
+
+      /*  List<Tarefa> listaTarefa = new ArrayList<>();
+
+    listaTarefa.add(new TarefaSimples("Estudar Java", "Listas", 1,
+            "Douglas", 4, TarefaStatus.PENDENTE));
+    listaTarefa.add(new TarefaSimples("Entregar PR", "Modulo 3", 1,
+            "Douglas", 8, TarefaStatus.PENDENTE));
+    listaTarefa.add(new TarefaComPrazo("Exercicios de fixação", "Conteudo do modulo 3", 1,
+            "Douglas", 2, TarefaStatus.EM_ANDAMENTO, 2));
+    listaTarefa.add(new TarefaComPrazo("Treinar", "Musculação", 2,
+            "Douglas", 2, TarefaStatus.CONCLUIDA, 2));
+
+    IO.println("Total de tarefas: " + listaTarefa.size());
+
+    List<Tarefa> concluidas = new ArrayList<>();
+    for (Tarefa t : listaTarefa) {
+        if (t.getStatus() == TarefaStatus.CONCLUIDA) {
+            concluidas.add(t);
+        }
+    }
+    IO.println("Concluidas encontradas: " + concluidas.size());
+
+    listaTarefa.removeAll(concluidas);
+
+    IO.println("Sobraram: " + listaTarefa.size());
+
+    for (Tarefa r : listaTarefa) {
+        IO.println("");
+        r.resumo();
+    }
+}
+
+List<Tarefa> listaTarefa = new ArrayList<>();
 
     // Tarefas de exemplo pra ter o que filtrar
     listaTarefa.add(new TarefaSimples("Estudar Java", "Exceções", 1,
-            "Lander", 2, TarefaStatus.EM_ANDAMENTO));
+            "Douglas", 2, TarefaStatus.EM_ANDAMENTO));
     listaTarefa.add(new TarefaComPrazo("Entregar PR", "Desafio da 3.2", 3,
-            "Lander", 4, TarefaStatus.PENDENTE, 48));
-    listaTarefa.add(new TarefaSimples("Configurar o Git", "Chave SSH", 2,
-            "Lander", 1, TarefaStatus.CONCLUIDA));
-    listaTarefa.add(new TarefaRecorrente(3));
+            "Douglas", 4, TarefaStatus.PENDENTE, 48));
+    listaTarefa.add(new TarefaRecorrente(2));
+
+    for (Tarefa t : listaTarefa){
+        IO.println("[" + t.tipo() + "] " + t.resumo());
+    }
 
     int opcao = 0;
     do {
@@ -115,3 +170,5 @@ void listarPendentes(List<Tarefa> tarefas) {
 
 
 }
+
+    */

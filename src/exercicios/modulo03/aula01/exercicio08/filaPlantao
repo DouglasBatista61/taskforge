@@ -1,0 +1,21 @@
+ copiar e colar no main(TaskForge).
+
+  List<String> fila = new ArrayList<>();
+      fila.add("Bruno");
+      fila.add("Carla");
+      fila.add("Diego");
+      IO.println("Fila inicial: " + fila.size());
+
+      List<String> chegou = new ArrayList<>();
+      chegou.add("Ana");
+      chegou.add("Robson");
+
+      fila.addAll(chegou);
+      IO.println("Chegaram mais 2 -> Fila: " + fila.size());
+
+      IO.println("Atendido agora: " + fila.remove(0));
+
+      fila.remove("Robson");
+      IO.println("Robson desistiu.");
+
+      IO.print("Restam " + fila.size() +   ": " + String.join(", ", fila));

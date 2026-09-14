@@ -1,13 +1,12 @@
 package exercicios.modulo02.aula02.desafio;
-import model.Notificavel;
-import model.Tarefa;
+import model.*;
 
 
 public class TarefaRecorrente extends Tarefa implements Notificavel {
     int vezesPorSemana;
 
     public TarefaRecorrente(int vezesPorSemana) {
-        super(nome, descricao, prioridade, responsavel, horasEstimadas, status);
+        super();
         this.vezesPorSemana = vezesPorSemana;
     }
 
@@ -15,13 +14,29 @@ public class TarefaRecorrente extends Tarefa implements Notificavel {
     public String tipo() {
         return "TAREFA RECORRENTE";
     }
+
     @Override
-    public String resumo() {
-        return "Backup - toda semana, 3x";
+    public int resumo() {
+        return vezesPorSemana;
     }
 
     @Override
     public String notificar() {
-        return "";
+        return "Backup - toda semana ," + vezesPorSemana + " vezes na semana";
     }
 }
+/* ------------ Bloco que vai no main --------------------
+List<Tarefa> listaTarefa = new ArrayList<>();
+
+// Tarefas de exemplo pra ter o que filtrar
+    listaTarefa.add(new TarefaSimples("Estudar Java", "Exceções", 1,
+        "Douglas", 2,TarefaStatus.EM_ANDAMENTO));
+        listaTarefa.add(new TarefaComPrazo("Entregar PR", "Desafio da 3.2", 3,
+        "Douglas", 4,TarefaStatus.PENDENTE, 48));
+        listaTarefa.add(new TarefaRecorrente(2));
+
+        for (Tarefa t : listaTarefa){
+        IO.println("[" + t.tipo() + "] " + t.resumo());
+        }
+
+ */
