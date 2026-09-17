@@ -1,4 +1,4 @@
-package model;
+package exercicios;
 
 public class TarefaComPrazo extends Tarefa implements Notificavel {
 

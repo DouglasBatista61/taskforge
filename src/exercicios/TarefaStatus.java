@@ -1,4 +1,4 @@
-package model;
+package exercicios;
 
 // ENUM: conjunto FIXO de valores com nome.
 // O status deixou de ser um int solto (1, 2, 3, 4) — agora ele TEM nome.

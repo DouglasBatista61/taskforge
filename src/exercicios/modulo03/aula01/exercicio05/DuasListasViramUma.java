@@ -1,6 +1,5 @@
-  copiar e colar no main(TaskForge).
-
- List<String> manha = new ArrayList<>();
+void main() {
+    List<String> manha = new ArrayList<>();
     manha.add("Ana");
     manha.add("Bruno");
 
@@ -17,3 +16,4 @@
         IO.println("- " + nomes);
     }
     IO.println("Tarde continua com: " + tarde.size());
+}

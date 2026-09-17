@@ -1,4 +1,4 @@
-package model;
+package exercicios;
 
 public class TarefaSimples extends Tarefa {
 

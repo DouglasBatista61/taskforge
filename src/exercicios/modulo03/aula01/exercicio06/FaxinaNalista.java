@@ -1,6 +1,5 @@
-copiar e colar no main(TaskForge).
-
-List<String> turma = new ArrayList<>();
+void main() {
+    List<String> turma = new ArrayList<>();
     turma.add("Ana");
     turma.add("Bruno");
     turma.add("Carla");
@@ -17,3 +16,4 @@ List<String> turma = new ArrayList<>();
     for (String nomes : turma) {
         IO.println("- " + nomes);
     }
+}

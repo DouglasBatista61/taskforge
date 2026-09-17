@@ -1,4 +1,4 @@
-package model;
+package exercicios;
 
 // Estado no inicio da 3.2 (veio da revisao de terca):
 // ABSTRATA (nao existe "tarefa generica") + metodo abstrato tipo().
@@ -31,7 +31,7 @@ public abstract class Tarefa {
 
     public int resumo() {
         IO.println("Resumo da " + tipo());
-        IO.println("model.Tarefa: " + this.nome);
+        IO.println("exercicios.Tarefa: " + this.nome);
         IO.println("Descricão: " + this.descricao);
         IO.println("Prioridade: " + this.prioridade);
         IO.println("Responsável: " + this.responsavel);

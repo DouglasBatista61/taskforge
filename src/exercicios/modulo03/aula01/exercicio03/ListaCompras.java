@@ -1,6 +1,7 @@
-copiar e colar no main(TaskForge).
 
-List<String> compras = new ArrayList<>();
+
+void main() {
+    List<String> compras = new ArrayList<>();
     compras.add("Arroz");
     compras.add("Feijão");
     compras.add("Café");
@@ -11,6 +12,7 @@ List<String> compras = new ArrayList<>();
     IO.println("Terceiro: " + compras.get(2));
 
     for(String item: compras ){
-     IO.println("- "+ item);
+        IO.println("- "+ item);
     }
-     compras.get(4); // Bloco que vai dar erro
+    compras.get(4); // Bloco que vai dar erro
+}

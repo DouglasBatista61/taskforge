@@ -1,6 +1,5 @@
- copiar e colar no main(TaskForge).
-
- List<String> compras = new ArrayList<>();
+void main() {
+    List<String> compras = new ArrayList<>();
     compras.add("Arroz");
     compras.add("Feijão");
     compras.add("Café");
@@ -17,3 +16,4 @@
     for (String item : compras) {
         IO.println("- " + item);
     }
+}
