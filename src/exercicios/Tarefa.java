@@ -26,6 +26,7 @@ public abstract class Tarefa {
 
     }
 
+
     // Cada filha e OBRIGADA a dizer qual e o seu tipo.
     public abstract String tipo();
 

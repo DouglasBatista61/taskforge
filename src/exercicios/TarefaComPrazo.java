@@ -22,6 +22,6 @@ public class TarefaComPrazo extends Tarefa implements Notificavel {
     }
 
     public String notificar() {
-        return "Lembrete: '" + getNome() + "' vence em " + tempoLimite + " horas!";
+        return "Lembrete: '" + getNome() + "' vence em: " + tempoLimite + " horas!";
     }
 }

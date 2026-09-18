@@ -3,6 +3,7 @@
 // Agora o programa nao quebra mais na cara do usuari
 
 import exercicios.*;
+import exercicios.modulo02.aula02.desafio.TarefaRecorrente;
 
 
 import java.util.List;
