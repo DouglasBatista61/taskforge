@@ -1,0 +1,17 @@
+{
+"nomeDoCatalogo": "StreamFlix",
+"total": 2,
+"midias": [
+        { "titulo": "Duna",
+         "nota": 8.7,
+         "genero": "AÇAO",
+         "duracaoMin": 155
+       }
+
+       ,{ "titulo": "Café com Código",
+         "nota": 9.1,
+         "genero": "TECNOLOGIA",
+         "duracaoMin": 28
+       }
+         ]
+}

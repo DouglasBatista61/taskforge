@@ -1,0 +1,10 @@
+{
+"nome": "Karol",
+"idade": 28,
+"ativo": true,
+"habilidades": [
+                "java",
+                "Git"
+                ],
+"cidade":"Recife"
+}
