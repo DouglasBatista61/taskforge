@@ -1,0 +1,19 @@
+void main() {
+    List<String> turma = new ArrayList<>();
+    turma.add("Ana");
+    turma.add("Bruno");
+    turma.add("Carla");
+    turma.add("Diego");
+    turma.add("Elis");
+    IO.println("Turma antes: " + turma.size());
+
+    List<String> desistentes = new ArrayList<>();
+    desistentes.add("Bruno");
+    desistentes.add("Diego");
+    turma.removeAll(desistentes);
+    IO.println("Turma depois: " + turma.size());
+
+    for (String nomes : turma) {
+        IO.println("- " + nomes);
+    }
+}

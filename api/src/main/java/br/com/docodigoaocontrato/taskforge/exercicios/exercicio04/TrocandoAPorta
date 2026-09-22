@@ -1,6 +1,6 @@
 spring.application.name=taskforge
 
-server.port=8080
+server.port=8081 // ponto do exercício
 
 spring.datasource.url=jdbc:h2:file:./data/taskforge
 spring.datasource.username=sa
@@ -9,7 +9,6 @@ spring.datasource.password=
 spring.jpa.hibernate.ddl-auto=update
 spring.h2.console.enabled=true
 
+// ---- Resposta do Tomcat -----
 
-
-
-
+Tomcat started on port 8081 (http) with context path '/'
