@@ -25,4 +25,9 @@ public class Tarefa {
     private int prioridade;
     private boolean concluida;
 
+    public Tarefa(String nome, int prioridade, boolean concluida) {
+        this.nome = nome;
+        this.prioridade = prioridade;
+        this.concluida = concluida;
+    }
 }
