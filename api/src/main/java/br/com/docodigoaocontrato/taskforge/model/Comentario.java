@@ -12,24 +12,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Tarefa {
+@NoArgsConstructor
+public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-    private Integer prioridade;
-    private Boolean concluida;
+    private String descricao;
+    private String autor;
 
-    // Gerado no IntelliJ na 6.1 (Generate > Constructor), SEM o id:
-    // quem numera a tarefa e o banco. E o que o toEntity usa.
-    public Tarefa(String nome, Integer prioridade, Boolean concluida) {
-        this.nome = nome;
-        this.prioridade = prioridade;
-        this.concluida = concluida;
-    }
 
 }

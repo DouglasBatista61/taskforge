@@ -16,7 +16,6 @@ public class Desafio {
         midiaDTOS.add(new MidiaDTO("Duna", 8.7, Genero.ACAO, 155));
         midiaDTOS.add(new MidiaDTO("Café com Código", 9.1, Genero.TECNOLOGIA, 28));
         midiaDTOS.add(new MidiaDTO("Tropa de Elite", 8.0, Genero.ACAO, 115));
-        CatalogoDTO catalogoDTO = new CatalogoDTO("StreamFlix", midiaDTOS);
-        return catalogoDTO;
+        return new CatalogoDTO("StreamFlix", midiaDTOS);
     }
 }
