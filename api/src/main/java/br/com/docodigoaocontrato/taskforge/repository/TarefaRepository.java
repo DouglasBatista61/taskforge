@@ -10,4 +10,6 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
     // NOVO · nenhum SQL, nenhuma implementacao.
     // O Spring le o NOME do metodo: findBy + Concluida -> WHERE concluida = ?
     List<Tarefa> findByConcluida(Boolean concluida);
+
+    List<Tarefa> findByPrioridadeAndConcluida(int prioridade, Boolean concluida);
 }

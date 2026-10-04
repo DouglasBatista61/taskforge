@@ -20,8 +20,8 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String descricao;
     private String autor;
+    private String descricao;
 
 
 }

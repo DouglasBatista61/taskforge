@@ -31,12 +31,44 @@ public class TarefaService {
                 .toList();
     }
 
+    // --------------- Exercicio 5 modulo 5.2 -----------------------------------------------
+
+    public List<TarefaDTO> buscarPendentes(Boolean concluida){
+        List<Tarefa> tarefasPendentes;
+        if (concluida == null){
+            tarefasPendentes = tarefaRepository.findByConcluida(false);
+        }else {
+            tarefasPendentes = tarefaRepository.findByConcluida(concluida);
+        }
+        return tarefasPendentes.stream()
+                .map(tarefaPendente -> toDto(tarefaPendente))
+                .toList();
+    }
+
+    // --------------------------------------------------------------------------------------
+
+    // -------------------------- Exercicio 6 modulo 5.2 ------------------------------------
+
+    public List<TarefaDTO> buscarUrgentes(Integer prioridade, Boolean concluida){
+        List<Tarefa> tarefasUrgentes;
+        tarefasUrgentes = tarefaRepository.findByPrioridadeAndConcluida(3, false);
+
+        return tarefasUrgentes.stream()
+                .map(tarefaUrgente -> toDto(tarefaUrgente))
+                .toList();
+    }
+
+    // --------------------------------------------------------------------------------------
+
+
     // NOVO · GET /tarefas/{id}
     // Optional = a caixa que pode vir vazia. A Service NAO sabe o que e 404.
     public Optional<TarefaDTO> buscarPorId(Long id) {
         return tarefaRepository.findById(id)
                 .map(tarefa -> toDto(tarefa));
     }
+
+
 
     public TarefaDTO criarTarefa(TarefaDTO tarefaDTO) {
         Tarefa tarefa = toEntity(tarefaDTO);
@@ -80,3 +112,5 @@ public class TarefaService {
                 tarefaDTO.isConcluida());
     }
 }
+// private final TarefaService tarefaService;
+// public TarefaController (TarefaService tarefaService) { this.tarefaService = tarefaService }
