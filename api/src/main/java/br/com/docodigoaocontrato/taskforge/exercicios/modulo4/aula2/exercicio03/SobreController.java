@@ -1,4 +1,4 @@
-package br.com.docodigoaocontrato.taskforge.exercicios.exercicio03;
+package br.com.docodigoaocontrato.taskforge.exercicios.modulo4.aula2.exercicio03;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

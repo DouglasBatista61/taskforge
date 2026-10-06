@@ -1,6 +1,6 @@
-package br.com.docodigoaocontrato.taskforge.exercicios.desafio;
+package br.com.docodigoaocontrato.taskforge.exercicios.modulo4.aula2.desafio;
 
-import br.com.docodigoaocontrato.taskforge.exercicios.exercicio06.Genero;
+import br.com.docodigoaocontrato.taskforge.exercicios.modulo4.aula2.exercicio06.Genero;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

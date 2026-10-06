@@ -7,24 +7,20 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+@AllArgsConstructor
+public class UsuarioExercicio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String nomeCompleto;
     private String email;
-    private String senha;
-
-
-    public Usuario(String nome, String email, String senha) {
-    }
+    private Integer idade;
+    private Integer hora;
+    private Boolean ativa;
 }

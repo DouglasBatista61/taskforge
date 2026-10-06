@@ -14,17 +14,16 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+public class Etiqueta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
-    private String email;
-    private String senha;
+    private String cor;
 
-
-    public Usuario(String nome, String email, String senha) {
+    public Etiqueta(String nome, String cor) {
+        this.nome = nome;
+        this.cor = cor;
     }
 }

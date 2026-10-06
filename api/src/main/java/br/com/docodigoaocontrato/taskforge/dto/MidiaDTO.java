@@ -9,12 +9,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoriaDTO {
+public class MidiaDTO {
 
-     private Long id;
-     private String nome;
-     private Boolean ativa;
+    private Long id;
+    private String tipo;
+    private String titulo;
+    private Integer duracaoMin;
+    private Double avaliacao;
+    private Integer anoLancamento;
 
-     public CategoriaDTO(String nome, Boolean ativa) {
-     }
 }

@@ -9,12 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoriaDTO {
+public class UsuarioCadastroDTO {
 
-     private Long id;
-     private String nome;
-     private Boolean ativa;
+    private String nome;
+    private String email;
+    private String senha;
 
-     public CategoriaDTO(String nome, Boolean ativa) {
-     }
 }

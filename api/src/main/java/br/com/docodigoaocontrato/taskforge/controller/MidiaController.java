@@ -1,5 +1,6 @@
 package br.com.docodigoaocontrato.taskforge.controller;
 
+import br.com.docodigoaocontrato.taskforge.dto.MidiaDTO;
 import br.com.docodigoaocontrato.taskforge.model.Midia;
 import br.com.docodigoaocontrato.taskforge.service.MidiaService;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +22,18 @@ public class MidiaController {
     }
 
     @GetMapping
-    public List<Midia> buscarMidias() {
+    public List<MidiaDTO> buscarMidias() {
         return midiaService.buscarTodas();
     }
 
     @GetMapping("/filmes")
-    public ResponseEntity<List<Midia>> filmes(
+    public ResponseEntity<List<MidiaDTO>> filmes(
             @RequestParam(required = false) String tipo) {
         return ResponseEntity.ok(midiaService.buscarFilmes(tipo));
 
     }
     @GetMapping("/bem-avaliadas")
-    public ResponseEntity<List<Midia>> bemAvaliadas(){
+    public ResponseEntity<List<MidiaDTO>> bemAvaliadas(){
         return  ResponseEntity.ok(midiaService.buscarAvaliacao());
 
     }

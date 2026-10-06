@@ -1,5 +1,6 @@
 package br.com.docodigoaocontrato.taskforge.service;
 
+import br.com.docodigoaocontrato.taskforge.dto.MidiaDTO;
 import br.com.docodigoaocontrato.taskforge.model.Midia;
 import br.com.docodigoaocontrato.taskforge.repository.MidiaRepository;
 import org.springframework.stereotype.Service;
@@ -15,14 +16,17 @@ public class MidiaService {
         this.midiaRepository = midiaRepository;
     }
 
-    public List<Midia> buscarTodas() {
-        return midiaRepository.findAll();
+    public List<MidiaDTO> buscarTodas() {
+        return midiaRepository.findAll()
+                .stream()
+                .map(midia -> toDto(midia))
+                .toList();
     }
 
-    public List<Midia> buscarFilmes(String tipo) {
+    public List<MidiaDTO> buscarFilmes(String tipo) {
         List<Midia> buscarTipo;
         if (tipo == null) {
-            buscarTipo = midiaRepository.findByTipoIgnoreCase("serie");
+            buscarTipo = midiaRepository.findByTipoIgnoreCase("filme");
         } else {
             buscarTipo = midiaRepository.findByTipo(tipo);
         }
@@ -31,18 +35,20 @@ public class MidiaService {
                 .toList();
     }
 
-    public List<Midia> buscarAvaliacao(){
-        List<Midia> bemAvaliadas;
-        bemAvaliadas = midiaRepository.findByAvaliacaoIsGreaterThan(8.6);
-        return bemAvaliadas;
+    public List<MidiaDTO> buscarAvaliacao() {
+        return midiaRepository.findByAvaliacaoIsGreaterThan(8.6)
+                .stream()
+                .map(avaliacao -> toDto(avaliacao))
+                .toList();
     }
 
-
-
-    private Midia toDto(Midia midia) {
-        return new Midia(midia.getId(), midia.getTitulo(),
-                midia.getTipo(), midia.getDuracaoMin(), midia.getAvaliacao(),
-                midia.getAnoLancamento());
+    private MidiaDTO toDto(Midia midia) {
+        return new MidiaDTO(midia.getId(), midia.getTitulo(), midia.getTipo(),
+                midia.getDuracaoMin(), midia.getAvaliacao(), midia.getAnoLancamento());
+    }
+    private Midia toEntity(MidiaDTO midiaDTO){
+        return new Midia(midiaDTO.getId(), midiaDTO.getTitulo(), midiaDTO.getTipo(),
+                midiaDTO.getDuracaoMin(), midiaDTO.getAvaliacao(), midiaDTO.getAnoLancamento());
     }
 }
 

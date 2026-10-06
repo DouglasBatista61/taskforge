@@ -25,7 +25,16 @@ public class Midia {
     private Integer duracaoMin;
     private Double avaliacao;
     private Integer anoLancamento;
-}
+
+    public Midia(String titulo, String tipo, Integer duracaoMin, Double avaliacao, Integer anoLancamento) {
+        this.titulo = titulo;
+        this.tipo = tipo;
+        this.duracaoMin = duracaoMin;
+        this.avaliacao = avaliacao;
+        this.anoLancamento = anoLancamento;
+    }
+} // Esse contrutor foi criado para metodo toEntity na Service
+
 
 // ------ PASSO 3 DESAFIO ------
 

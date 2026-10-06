@@ -1,4 +1,4 @@
-package br.com.docodigoaocontrato.taskforge.exercicios.exercicio07;
+package br.com.docodigoaocontrato.taskforge.exercicios.modulo4.aula2.exercicio07;
 
 import br.com.docodigoaocontrato.taskforge.dto.TarefaDTO;
 import org.springframework.web.bind.annotation.GetMapping;
