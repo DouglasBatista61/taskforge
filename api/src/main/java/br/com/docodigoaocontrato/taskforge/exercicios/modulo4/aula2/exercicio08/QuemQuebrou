@@ -1,0 +1,26 @@
+
+para cada situação abaixo, escreva a causa e o conserto. Sem rodar nada — só pensando. Depois confira nogabarito.
+
+1.O navegador mostra Whitelabel Error Page 404 em /tarefas, mas o log diz Tomcat started on port 8080.
+
+  Pode ser que não tenha a anotação @RestController ou @getMapping na classe.
+
+2.O navegador diz"não foi possível conectar".
+
+   A aplicação não está rodando.
+
+3.O endpoint devolve{} — chaves vazias, sem nenhum campo.
+
+    Falta de getters.
+
+4.Você mudou o texto do return, salvou, atualizou a página e continua aparecendo o texto antigo.
+
+    Falta rodar a aplicação novamente.
+
+5.Você criou o controller, tudo está escrito certo, sem erro no IntelliJ — e mesmo assim dá 404.
+
+    Pode ser:
+     - Algum problema de pacote na raiz do projeto.
+     - O server-port pode estar incorreto.
+     - URl errada.
+

@@ -1,0 +1,124 @@
+// ------------------- Exercicio 7 modulo 5.2 -------------------------------------------------------
+
+// Pra cada situação, escreva a camada: CONTROLLER SERVICE ou REPOSITORY .
+//A SITUAÇÃO A CAMADA
+//1 "só mostrar as categorias que estão ativas": ---- Service ----
+//2 "o endereço vai ser /categorias/ativas": ---- Controller -----
+//3 extends JpaRepository<Categoria, Long>: ---- Repository -----
+//4 "tarefa atrasada é a que passou do prazo e não está concluída" ---- Service ----
+//5 o @GetMapping: ---- Controller ----
+//6 "buscar e guardar no banco": ---- Repository -----
+//7 "uma categoria desativada não aparece pra ninguém": ---- Service ----
+//8 "devolver a lista em JSON pro navegador" ---- Controller -----
+
+// Um colega mandou esta controller. Ela compila, roda e devolve o JSON certo. E está errada em dois pontos.
+//Quais? E como fica o conserto?
+
+    //CATEGORIACONTROLLER.JAVA — DO COLEGA
+        //@RestController
+        //public class CategoriaController {
+
+            //private final CategoriaRepository repository;                  <-- private final CategoriaService categoriaService;
+
+            //public CategoriaController(CategoriaRepository repository) {   <-- (CategoriaService categoriaService)
+                //this.repository = repository;                              <-- this.categoriaservice = categoriaService
+                //}
+
+            //@GetMapping("/categorias/ativas")
+            //public List<Categoria> listarAtivas() {
+            //return repository.findAll().stream()                            <-- return ResponseEntity.ok(categoriaService.listarAtivas());
+                 //.filter(c -> c.isAtiva())                                  <-- esses filtros não existem ai.
+                 //.toList();
+        //}
+    //}
+// ---- CORRIGIDO ---
+
+    //@RestController
+    //public class CategoriaController {
+
+        //private final CategoriaService categoriaService;
+
+         //public CategoriaController(CategoriaService categoriaService) {
+            //this.categoriaService = categoriaService;
+        // }
+
+            //@GetMapping("/categorias/ativas")
+            //public ResponseEntity<List<CategoriaDTO>> listarAtivas() {
+                //return ResponseEntity.ok(categoriaService.listarAtivas());
+        //  }
+    // }
+
+ // ---------------------------------------------------------------------------------------------
+
+// -------------------------- Exercicio 8 modulo 5.2 --------------------------------------------
+
+//  A. Pra cada uma escreva a causa e o conserto. Uma linha cada
+
+//<dependency>
+    //<groupId>org.projectlombok</groupId>
+    //<artifactId>lombok</artifactId>
+    //<version>0.9.2</version>               --> Não é necessario a versão, ja vem por padrão a versão certa.
+    //<scope>compile</scope>                 --> Não é necessario o scope.
+//</dependency>
+
+//  B · LOGO DEPOIS DE COLAR O LOMBOK, A TAREFA ACENDE 8 ERROS
+//Tarefa.java
+//java: package jakarta.persistence does not exist
+//java: package jakarta.persistence does not exist
+//java: package jakarta.persistence does not exist
+//java: package jakarta.persistence does not exist
+//java: cannot find symbol   symbol: class Entity
+//java: cannot find symbol   symbol: class Id
+//java: cannot find symbol   symbol: class GeneratedValue
+//java: cannot find symbol   symbol: variable GenerationType
+
+// É um erro na biblioteca JPA que ocorre por falta da dependencia no arquivo pom.xml.
+// Como eu não lembrava a dependencia fui pesquisar, é a dependencia do Spring boot, que ja traz a
+// Jpa e o hibernate.
+//        <dependency>
+//            <groupId>org.springframework.boot</groupId>
+//            <artifactId>spring-boot-starter-data-jpa</artifactId>
+//        </dependency>
+
+
+// C · A LINHA EM CIMA DA CLASSE FICA VERMELHA
+//@getter
+//public class Tarefa {
+//java: cannot find symbol
+//symbol: class getter
+
+// Esse erro pode ser tanto por conta do @getter estar com o g minusculo, seria assim @Getter ou
+// algum erro na biblioteca lombok por conta da dependencia.
+
+//  D · NO H2-CONSOLE, AO CLICAR EM CONNECT
+//JDBC URL:  jdbc:h2:mem:testdb
+//Database "mem:testdb" not found, either pre-create it or allow
+//remote database creation (not recommended in secure environments)
+
+//Eu começaria trantando esse erro vericando se as informações do application properties batem com
+// a do console, URL, server-port. Pode haver algum dado errado que esteja indicando um banco inexistente.
+
+
+//  E · "ZEROU TUDO" — SEM ERRO NENHUM NO LOG
+//INSERT INTO TAREFA ...   (3 linhas, tudo certo)
+//SELECT * FROM TAREFA;    -> 3 linhas
+//(parar o servidor, rodar de novo)
+//SELECT * FROM TAREFA;    -> vazio
+
+// Ocorre pq o banco está salvo na mem, para que os dados persistam precisa estar salvo em file.
+
+
+//  F · O TOPO DA CONTROLLER DE UM COLEGA
+//@Service                             <-- Esse @Service não deveria existir ai.
+//@RestController
+//public class TarefaController {
+
+
+
+//  G · CÓDIGO NOVO NA TELA, COMPORTAMENTO VELHO RODANDO
+// - trocou o nome do méodo na controller,
+// - salvou, rodou de novo
+// - o navegador continua mostrando o resultado de antes
+// - pôs um breakpoint dentro do listar() e ele NÃO PARA
+// - o H2 está certo, a requisição chega (conferido no DevTools)
+// - já clicou em "Clean" na IDE.

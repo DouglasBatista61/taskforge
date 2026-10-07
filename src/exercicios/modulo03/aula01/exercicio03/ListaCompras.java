@@ -1,0 +1,18 @@
+
+
+void main() {
+    List<String> compras = new ArrayList<>();
+    compras.add("Arroz");
+    compras.add("Feijão");
+    compras.add("Café");
+    compras.add("Pão");
+
+    IO.println("Total: " + compras.size());
+    IO.println("Primeiro: " + compras.get(0));
+    IO.println("Terceiro: " + compras.get(2));
+
+    for(String item: compras ){
+        IO.println("- "+ item);
+    }
+    compras.get(4); // Bloco que vai dar erro
+}

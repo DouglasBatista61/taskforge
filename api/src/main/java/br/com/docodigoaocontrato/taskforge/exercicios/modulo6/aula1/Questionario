@@ -1,0 +1,23 @@
+
+ 7 - Responda com suas palavras, em 2 a 4 linhas cada:
+
+1. Por que o toDto e o toEntity ficam na Service, e não na Controller?
+    Porque na Service é onde moram as regras de nogocio.
+
+2. Se amanhã a Categoria ganhar um campo criadaEm que a API não deve expor, o que muda no DTO? E na
+entidade?
+    O campo será adicionado somente na entidade Categoria, na DTO continuariam os mesmos campos, não muda nada.
+     Por isso a DTO foi criada, para expor somente campos que queremos
+
+ 8 - Para cada situação, diga o que acontece e por quê:
+     1. Um colega devolve List<Categoria> (a entidade) no GET, e amanhã a entidade ganha um campo senhaInterna.
+        O que vaza?
+           Os valores desse novo campo vazariam, junto com outros dados contidos na entidade.
+
+     2.O POST devolve 200 em vez de 201. Está errado? Por quê o 201 é melhor?
+           O 200 devolve diz que a requisição deu certo. Ja o 201 diz que a requisição teve sucesso e foi criado algo.
+           Sendo assim estaria completamente errado o retorno 200, porem 0 201 é mais certo a se usar.
+
+
+      3. O cliente manda { "id": 50, "nome": "X" } e recebe id: 4 . Isso é um bug ou é o esperado?
+           É esperado, porque o ID vem gerado automatico do banco.

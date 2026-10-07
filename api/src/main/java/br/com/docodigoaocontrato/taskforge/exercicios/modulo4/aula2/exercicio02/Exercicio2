@@ -1,0 +1,6 @@
+------- Copiar e colar na tarefa controller ----------
+
+    @GetMapping("/tarefas/total")
+    public String total(){
+        return "Você tem 5 tarefas";
+    }
