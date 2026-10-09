@@ -1,12 +1,14 @@
 package br.com.docodigoaocontrato.taskforge.controller;
 
 import br.com.docodigoaocontrato.taskforge.dto.EtiquetaDTO;
+import br.com.docodigoaocontrato.taskforge.dto.TarefaDTO;
 import br.com.docodigoaocontrato.taskforge.service.EtiquetaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/etiquetas")
@@ -22,6 +24,28 @@ public class EtiquetaController {
     public List<EtiquetaDTO> buscarTodas() {
         return etiquetaService.listarTodas();
     }
+
+    // ------------------- Desafio 6.2 -----------------------------------------------------------
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EtiquetaDTO> buscarPorId(@PathVariable Long id) {
+        Optional<EtiquetaDTO> etiqueta = etiquetaService.buscarPorId(id);
+        if (etiqueta.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(etiqueta.get());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EtiquetaDTO> atualizarTarefa(@PathVariable Long id, @RequestBody EtiquetaDTO etiquetaDTO) {
+        Optional<EtiquetaDTO> atualizada = etiquetaService.atualizarEtiqueta(id, etiquetaDTO);
+        if (atualizada.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(atualizada.get());
+    }
+
+    //--------------------------------------------------------------------------------------------
 
     @PostMapping
     public ResponseEntity<EtiquetaDTO> criarEtiqueta(@RequestBody EtiquetaDTO etiquetaDTO) {
