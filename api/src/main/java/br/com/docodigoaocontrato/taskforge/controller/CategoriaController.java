@@ -2,14 +2,13 @@ package br.com.docodigoaocontrato.taskforge.controller;
 
 import br.com.docodigoaocontrato.taskforge.dto.CategoriaDTO;
 import br.com.docodigoaocontrato.taskforge.dto.TarefaDTO;
-import br.com.docodigoaocontrato.taskforge.model.Categoria;
-import br.com.docodigoaocontrato.taskforge.model.Tarefa;
 import br.com.docodigoaocontrato.taskforge.service.CategoriaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/categorias")
@@ -21,15 +20,53 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping
-    public List<CategoriaDTO> buscarTodos() {
-        return categoriaService.buscarTodas();
 
+    // -------------------------- Exercicio 6 modulo 6.3-------------------------
+
+    @GetMapping
+    public List<CategoriaDTO> buscarAtivas(
+            @RequestParam(required = false) Boolean ativa) {
+        return categoriaService.buscarTodas(ativa);
     }
+
+    // ----------------------------------------------------------------------------------
     @PostMapping
-    public ResponseEntity<CategoriaDTO> criarCategoria(@RequestBody CategoriaDTO categoriaDTO){
+    public ResponseEntity<CategoriaDTO> criarCategoria(@RequestBody CategoriaDTO categoriaDTO) {
         CategoriaDTO criarCategoria = categoriaService.criarCategoria(categoriaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(criarCategoria);
 
+    }
+    //------------------------------ Exercicio 2 - 6.2 ----------------------------------
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoriaDTO> buscarPorId(@PathVariable Long id) {
+        Optional<CategoriaDTO> categoria = categoriaService.buscarPorId(id);
+        if (categoria.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(categoria.get());
+    }
+    // ----------------------------------------------------------------------------------
+
+    //------------------------------ Exercicio 5 - 6.2 ----------------------------------
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoriaDTO> atualizarCategoria(@PathVariable Long id, @RequestBody CategoriaDTO categoriaDTO) {
+        Optional<CategoriaDTO> atualizada = categoriaService.atualizarCategoria(id, categoriaDTO);
+        if (atualizada.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(atualizada.get());
+    }
+    // ---------------------------------------------------------------------------------
+
+    //------------------------------ Exercicio 2 - 6.3 ----------------------------------
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarCategoria(@PathVariable Long id) {
+        if (!categoriaService.deletarCategoria(id)) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.noContent().build();
+        }
     }
 }

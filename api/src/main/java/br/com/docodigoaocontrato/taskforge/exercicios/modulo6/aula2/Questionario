@@ -1,0 +1,22 @@
+  Onde mora o 404
+
+  7.  Responda em 2 a 4 linhas cada:
+   1. Por que a Service devolve Optional e não um ResponseEntity com 404 já pronto?
+   Porque 404 é um retorno de requisição, e se faz na controller.
+
+
+   2. Um GET /categorias/999 poderia devolver 200 com corpo vazio. Por que 404 é melhor que isso?
+   Porque o 404 vai  indicar que ha algo errado, que o id não existe. com 200 o cliente fica sem saber se
+   aquele id existe ou se ele esta apenas vazio.
+
+
+ 8.Para cada situação, diga o que acontece e por quê:
+     1. Um colega chama optional.get() sem isEmpty() num id que não existe. Qual exceção estoura?
+       NoSuchElementException:No value present
+
+     2. O PUT /categorias/999 num id inexistente cria a categoria em vez de dar 404. O que faltou na Service?
+      Faltou antes buscar se existe com o if.
+
+
+     3. No @PathVariable aparece Name for argument of type [Long] not specified . Qual o conserto?
+     -----------------------------
