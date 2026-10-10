@@ -1,6 +1,8 @@
 package br.com.docodigoaocontrato.taskforge.service;
 
+import br.com.docodigoaocontrato.taskforge.dto.CategoriaDTO;
 import br.com.docodigoaocontrato.taskforge.dto.EtiquetaDTO;
+import br.com.docodigoaocontrato.taskforge.model.Categoria;
 import br.com.docodigoaocontrato.taskforge.model.Etiqueta;
 import br.com.docodigoaocontrato.taskforge.model.Tarefa;
 import br.com.docodigoaocontrato.taskforge.repository.EtiquetaRepository;
@@ -34,12 +36,12 @@ public class EtiquetaService {
 
     // ------------------- Desafio 6.2 -----------------------------------------------------------
 
-    public Optional<EtiquetaDTO> buscarPorId(Long id){
+    public Optional<EtiquetaDTO> buscarPorId(Long id) {
         return etiquetaRepository.findById(id)
                 .map(etiqueta -> toDto(etiqueta));
     }
 
-    public Optional<EtiquetaDTO> atualizarEtiqueta(Long id, EtiquetaDTO etiquetaDTO){
+    public Optional<EtiquetaDTO> atualizarEtiqueta(Long id, EtiquetaDTO etiquetaDTO) {
         Optional<Etiqueta> etiquetaEncontrada = etiquetaRepository.findById(id);
         if (etiquetaEncontrada.isEmpty()) {
             return Optional.empty();
@@ -54,9 +56,30 @@ public class EtiquetaService {
     }
 
 
+    // ------------------- Desafio 6.3 -----------------------------------------------------------
+
+    public boolean deletarEtiqueta(Long id) {
+        if (!etiquetaRepository.existsById(id)) {
+            return false;
+        }
+        etiquetaRepository.deleteById(id);
+        return true;
+    }
+
+    public List<EtiquetaDTO> buscarCor(String cor) {
+        List<Etiqueta> etiquetas;
+        if (cor == null) {
+            etiquetas = etiquetaRepository.findAll();
+        } else {
+            etiquetas = etiquetaRepository.findByCorContainsIgnoreCase(cor);
+        }
+        return etiquetas.stream()
+                .map(etiqueta -> toDto(etiqueta))
+                .toList();
+
+    }
+
     //--------------------------------------------------------------------------------------------
-
-
     private EtiquetaDTO toDto(Etiqueta etiqueta) {
         return new EtiquetaDTO(etiqueta.getId(), etiqueta.getNome(),
                 etiqueta.getCor());
@@ -67,3 +90,10 @@ public class EtiquetaService {
                 etiquetaDTO.getCor());
     }
 }
+
+
+
+
+
+
+

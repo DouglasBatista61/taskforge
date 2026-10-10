@@ -1,7 +1,9 @@
 package br.com.docodigoaocontrato.taskforge.controller;
 
+import br.com.docodigoaocontrato.taskforge.dto.CategoriaDTO;
 import br.com.docodigoaocontrato.taskforge.dto.EtiquetaDTO;
 import br.com.docodigoaocontrato.taskforge.dto.TarefaDTO;
+import br.com.docodigoaocontrato.taskforge.model.Etiqueta;
 import br.com.docodigoaocontrato.taskforge.service.EtiquetaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +22,6 @@ public class EtiquetaController {
         this.etiquetaService = etiquetaService;
     }
 
-    @GetMapping
-    public List<EtiquetaDTO> buscarTodas() {
-        return etiquetaService.listarTodas();
-    }
 
     // ------------------- Desafio 6.2 -----------------------------------------------------------
 
@@ -37,7 +35,7 @@ public class EtiquetaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EtiquetaDTO> atualizarTarefa(@PathVariable Long id, @RequestBody EtiquetaDTO etiquetaDTO) {
+    public ResponseEntity<EtiquetaDTO> atualizarEtiqueta(@PathVariable Long id, @RequestBody EtiquetaDTO etiquetaDTO) {
         Optional<EtiquetaDTO> atualizada = etiquetaService.atualizarEtiqueta(id, etiquetaDTO);
         if (atualizada.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -53,4 +51,22 @@ public class EtiquetaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(etiquetaCriada);
     }
 
+    // ------------------- Desafio 6.3 -----------------------------------------------------------
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarEtiqueta(@PathVariable Long id) {
+        if (!etiquetaService.deletarEtiqueta(id)) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @GetMapping
+    public List<EtiquetaDTO> buscarPorCor(
+            @RequestParam(required = false) String cor) {
+        return etiquetaService.buscarCor(cor);
+    }
+
+    // -------------------------------------------------------------------------------------------
 }

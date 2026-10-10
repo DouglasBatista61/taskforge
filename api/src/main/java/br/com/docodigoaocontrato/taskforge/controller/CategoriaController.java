@@ -20,13 +20,18 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping
-    public List<CategoriaDTO> buscarTodos() {
-        return categoriaService.buscarTodas();
 
+    // -------------------------- Exercicio 6 modulo 6.3-------------------------
+
+    @GetMapping
+    public List<CategoriaDTO> buscarAtivas(
+            @RequestParam(required = false) Boolean ativa) {
+        return categoriaService.buscarTodas(ativa);
     }
+
+    // ----------------------------------------------------------------------------------
     @PostMapping
-    public ResponseEntity<CategoriaDTO> criarCategoria(@RequestBody CategoriaDTO categoriaDTO){
+    public ResponseEntity<CategoriaDTO> criarCategoria(@RequestBody CategoriaDTO categoriaDTO) {
         CategoriaDTO criarCategoria = categoriaService.criarCategoria(categoriaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(criarCategoria);
 
@@ -34,23 +39,34 @@ public class CategoriaController {
     //------------------------------ Exercicio 2 - 6.2 ----------------------------------
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaDTO> buscarPorId(@PathVariable Long id){
+    public ResponseEntity<CategoriaDTO> buscarPorId(@PathVariable Long id) {
         Optional<CategoriaDTO> categoria = categoriaService.buscarPorId(id);
-        if(categoria.isEmpty()){
+        if (categoria.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(categoria.get());
     }
-    // --------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
 
     //------------------------------ Exercicio 5 - 6.2 ----------------------------------
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaDTO> atualizarTarefa(@PathVariable Long id, @RequestBody CategoriaDTO categoriaDTO){
+    public ResponseEntity<CategoriaDTO> atualizarCategoria(@PathVariable Long id, @RequestBody CategoriaDTO categoriaDTO) {
         Optional<CategoriaDTO> atualizada = categoriaService.atualizarCategoria(id, categoriaDTO);
-        if (atualizada.isEmpty()){
+        if (atualizada.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(atualizada.get());
     }
-    // --------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------
+
+    //------------------------------ Exercicio 2 - 6.3 ----------------------------------
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarCategoria(@PathVariable Long id) {
+        if (!categoriaService.deletarCategoria(id)) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
 }
