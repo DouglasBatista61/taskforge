@@ -1,19 +1,18 @@
 package br.com.docodigoaocontrato.taskforge.controller;
 
-import br.com.docodigoaocontrato.taskforge.dto.UsuarioCadastroDTO;
-import br.com.docodigoaocontrato.taskforge.dto.UsuarioDTO;
+import br.com.docodigoaocontrato.taskforge.dto.*;
 import br.com.docodigoaocontrato.taskforge.service.UsuarioService;
+import jakarta.validation.Valid;
+import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Usuarios")
+@RequestMapping("/usuarios")   // cadastro = POST /usuarios ; login = POST /usuarios/login
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -22,14 +21,47 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-//    @PostMapping
-//    public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioCadastroDTO usuarioCadastroDTO){
-//        Optional<UsuarioDTO> usuarioCriado = usuarioService.cadastrar(usuarioCadastroDTO);
-//        if(usuarioCriado.isEmpty()){
+    // ---- 7.1: cadastro ----  POST /usuarios
+    @PostMapping("/cadastro")
+    public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioCadastroDTO dto){
+        Optional<UsuarioDTO> criado = usuarioService.cadastrar(dto);
+        if(criado.isEmpty()){
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(criado.get());
+    }
 
-//            return ResponseEntity.notFound().build();
-//        }
-//        return new ResponseEntity.status(HttpStatus.CREATED).body(usuarioCriado.get());
-//
-//    }
+
+    // ---- 7.2: login ----  POST /usuarios/login
+    @PostMapping("/login")
+    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO dto) {
+        Optional<TokenDTO> token = usuarioService.login(dto);
+        if (token.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // 401
+        }
+        return ResponseEntity.ok(token.get());                            // 200 + token
+    }
+
+    // --------------------- Exercicio 6 modulo 7.1 --------------------------------------
+
+    @GetMapping
+    public ResponseEntity<List<UsuarioDTO>> listarTodos() {
+        return ResponseEntity.ok(usuarioService.listarTodos());
+    }
+    // ------------------------------------------------------------------------------------
+
+    // --------------------- Desafio modulo 7.1 -------------------------------------------
+
+    @PutMapping("/{id}/desativar")
+    public ResponseEntity<UsuarioDTO> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
+        Optional<UsuarioDTO> atualizado = usuarioService.desativarUsuario(usuarioDTO, id);
+        if (atualizado.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(atualizado.get());
+    }
+
+    // ------------------------------------------------------------------------------------
 }
+
+

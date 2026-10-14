@@ -1,0 +1,14 @@
+Responda com suas palavras, no PR ou no Discord:
+1. Por que a gente guarda a senha embaralhada e não criptografada de um jeito que dê pra desfazer?
+ - Por questão de segurança, assim não descriptografa, O embaralhar que seria um Hash, não tem como desfazer.
+
+2. Quando um site diz "esqueci minha senha", ele reseta (cria uma nova) em vez de te mostrar a antiga. Por quê?
+Ligue isso ao hash de mão única.
+ - Porque se o site não iria te mostrar a senha original que vc cadastrou e sim um Hash, isso pq a senha
+   vira um hash pra poder ser armazenada no banco. E como o hash é de mão unica, não pode ser desfeito, a senha é resetada.
+
+
+3. Se o controller devolvesse a entidade em vez do UsuarioDTO , o que vazaria na resposta — mesmo com a senha
+já embaralhada? Por que isso ainda é ruim?
+ - Vazaria todos os dados contidos ali, Nome, email, senha. E mesmo que os dados estajam como Hash isso ja seria
+    suficiente pra um Hacker tentar quebrar esse Hash.
