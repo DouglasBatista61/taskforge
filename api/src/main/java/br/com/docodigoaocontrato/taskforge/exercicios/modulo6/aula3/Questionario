@@ -1,0 +1,27 @@
+7. Id e o filtro
+
+1. Qual a diferença entre /categorias/2 e /categorias?ativa=true ? Um usa @PathVariable , o outro
+   @RequestParam — por quê?
+
+   - /categorias/2 usa @PathVariable porque o seu parametro de busca vai ser pelo id e vai trazer o item indicado na url.
+   - /categorias?ativa=true usa @RequestParam porque ele vai filtrar de acordo com o parametro passado, exemplo: Boolean.
+
+   2. Por que o parâmetro do filtro é Boolean (maiúsculo) e não boolean ?
+   - o Boolean aceita null, ja boolean so true ou false.
+
+8.  Leia o erro
+Para cada situação, diga o que acontece e por quê:
+
+   1. Alguém escreveu findByAtivo (com O). A aplicação nem sobe. Por quê, e onde o erro aparece (partida ou requisição)?
+        por questão de sintaxe ficaria invalido. Acredito que o erro seria na partida, pq a aplicação nem chegaria a "Startar"
+
+   2. O GET /categorias sem parâmetro devolve 400 Bad Request. O que faltou?
+      - Pode ter faltado alguma caractere na url.
+      - Pode ter faltado o @GetMapping.
+
+   3. O DELETE de uma categoria que não existe devolve 200 em vez de 404. O que faltou na Service?
+        Falta o existsById, para conferir se o Id existe e devolver false (nesse caso a condição estaria negando a
+        existência do Id, por isso false.)
+
+
+

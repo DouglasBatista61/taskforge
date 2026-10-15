@@ -5,13 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
+// DTO de SAIDA (a vitrine). Repare: NAO tem senha.
+// O que sai da API mostra id, nome e email - nunca a senha.
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class UsuarioDTO {
-
+    private Long id;
     private String nome;
     private String email;
-    private String senha;
+    private Boolean ativo;
 }
