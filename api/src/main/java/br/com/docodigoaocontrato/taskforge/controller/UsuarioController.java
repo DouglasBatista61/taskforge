@@ -22,10 +22,10 @@ public class UsuarioController {
     }
 
     // ---- 7.1: cadastro ----  POST /usuarios
-    @PostMapping("/cadastro")
-    public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioCadastroDTO dto){
+    @PostMapping
+    public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioCadastroDTO dto) {
         Optional<UsuarioDTO> criado = usuarioService.cadastrar(dto);
-        if(criado.isEmpty()){
+        if (criado.isEmpty()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(criado.get());
@@ -34,12 +34,12 @@ public class UsuarioController {
 
     // ---- 7.2: login ----  POST /usuarios/login
     @PostMapping("/login")
-    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO dto) {
-        Optional<TokenDTO> token = usuarioService.login(dto);
-        if (token.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // 401
+    public ResponseEntity<LoginRespostaDTO> login(@RequestBody LoginDTO dto) {
+        Optional<LoginRespostaDTO> token = usuarioService.login(dto);
+        if (token.isEmpty()){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        return ResponseEntity.ok(token.get());                            // 200 + token
+        return ResponseEntity.ok(token.get());
     }
 
     // --------------------- Exercicio 6 modulo 7.1 --------------------------------------
@@ -62,6 +62,14 @@ public class UsuarioController {
     }
 
     // ------------------------------------------------------------------------------------
+
+    @DeleteMapping
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
+        if (!usuarioService.deletarUsuario(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
+    }
 }
 
 
