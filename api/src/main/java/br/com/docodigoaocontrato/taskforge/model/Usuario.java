@@ -19,19 +19,17 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String nome;
+    private String nome;
+    private String email;
+    private String senha;
+    private Boolean ativo;
 
-    @Column(unique = true)
-    public String email;
-
-    public String senha;
-    public Boolean ativo;
-
-    public Usuario(String nome, String email, String senha) {
+    public Usuario(String nome, String email, String senha, Boolean ativo) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.ativo = ativo;
     }
 }
