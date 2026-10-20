@@ -35,3 +35,11 @@ public class JwtService {
         }
     }
 }
+
+//-------- Exercicio 4 modulo 7.3 ----------------------------
+// Prove que o lacre protege de verdade.
+//1. Pegue um token válido e troque um caractere no meio dele.
+//2. Mande
+//GET /tarefas com esse token adulterado.
+//3. Anote o status e escreva, em uma linha, por que deu isso
+// 401 - Deu esse pq o token estava alterado, o lacre da assinatura não bate.
