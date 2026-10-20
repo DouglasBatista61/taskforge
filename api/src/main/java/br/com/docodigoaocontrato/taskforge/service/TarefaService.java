@@ -68,8 +68,6 @@ public class TarefaService {
                 .map(tarefa -> toDto(tarefa));
     }
 
-
-
     public TarefaDTO criarTarefa(TarefaDTO tarefaDTO) {
         Tarefa tarefa = toEntity(tarefaDTO);
         return toDto(tarefaRepository.save(tarefa));
