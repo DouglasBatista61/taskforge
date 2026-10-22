@@ -24,11 +24,11 @@ public class TarefaController {
     // GET /tarefas?concluida=true  -> so as concluidas
     // required = false: sem o parametro, concluida chega null
     @GetMapping
-    public ResponseEntity<List<TarefaDTO>> listar(
+    public ResponseEntity<List<TarefaDTO>> buscarTodas(
             @RequestParam(required = false) Boolean concluida) {
         return ResponseEntity.ok(tarefaService.buscarTodos(concluida));
     }
-    // --------------- Exercicio 5 modulo 5.2 --------------------------------------
+    // --------------- Exercicio 5 modulo 5.2 ---------------------------------------
 
 
     @GetMapping("/pendentes")
@@ -46,16 +46,6 @@ public class TarefaController {
             @RequestParam(required = false) Boolean concluida, Integer prioridade) {
         return ResponseEntity.ok(tarefaService.buscarUrgentes(prioridade, concluida));
     }
-
-    //----------------- Questionario 6B modulo 5.2 ----------------------------------
-    // 1 - O que é diferente entre os dois metodos novos da controller, alem do nome da url?
-    //  Visualmente são praticamente identicos, o corpo usado no metodo é o mesmo, o que muda é nome do metodo,
-    //  e o que ele busca, um busca 1 parametro e outro 2 parametros.
-
-    // 2 - Amanhã o cliente decide: "Urgente agora é uma prioridade 1 ou 2". Quantos arquivos você abre pra mudar? quais?
-    // Abro o arquivo TarefaService, pq ele faz a regra, ele que monta o "hamburguer", e tambem o Repository porque caso a
-    // priordade aggora tenha dois valores int 1,2 por exemplo, precisaria cria um novo metodo para receber as duas.
-    // Agora se continuar somente um valor de prioridade so muda a service mesmo. A controller não muda nada ela só é o "Garçom".
 
 
     // ------------------------------------------------------------------------------

@@ -45,8 +45,8 @@ public class UsuarioController {
     // --------------------- Exercicio 6 modulo 7.1 --------------------------------------
 
     @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> listarTodos() {
-        return ResponseEntity.ok(usuarioService.listarTodos());
+    public ResponseEntity<List<UsuarioDTO>> listarTodos(@RequestParam(required = false) Boolean ativo) {
+        return ResponseEntity.ok(usuarioService.listarTodos(ativo));
     }
     // ------------------------------------------------------------------------------------
 

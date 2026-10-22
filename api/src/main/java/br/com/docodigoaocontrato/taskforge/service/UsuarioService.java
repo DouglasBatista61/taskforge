@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -55,8 +57,14 @@ public class UsuarioService {
 
     // --------------------- Exercicio 6 modulo 7.1 -----------------------------------------------
 
-    public List<UsuarioDTO> listarTodos(){
-        return usuarioRepository.findAll()
+    public List<UsuarioDTO> listarTodos(Boolean ativo){
+        List<Usuario> usuariosListados;
+        if(ativo == null){
+            usuariosListados = usuarioRepository.findAll();
+        }else{
+            usuariosListados = usuarioRepository.findByAtivo(ativo);
+        }
+        return usuariosListados
                 .stream()
                 .map(buscar -> toDto(buscar))
                 .toList();

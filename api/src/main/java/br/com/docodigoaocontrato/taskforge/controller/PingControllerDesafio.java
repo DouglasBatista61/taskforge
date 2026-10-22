@@ -1,13 +1,13 @@
-package br.com.docodigoaocontrato.taskforge.exercicios.modulo4.aula2.exercicio01;
+package br.com.docodigoaocontrato.taskforge.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PingController {
+public class PingControllerDesafio {
 
     @GetMapping("/ping")
-    public String ping() {
-        return "Pong";
+    public String ping(){
+        return "pong";
     }
 }
