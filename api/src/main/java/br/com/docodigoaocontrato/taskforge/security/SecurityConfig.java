@@ -24,9 +24,15 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/usuarios", "/usuarios/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/usuarios", "/usuarios/login", "/tarefas").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
+                        // ------------- Exercicio 4 modulo 8.1 ----------------------------
                         .requestMatchers("/error").permitAll()
+                        // -----------------------------------------------------------------
+
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/tarefas/{id}").permitAll()
+
                         // ------------- Exercicio 5 modulo 7.3 ----------------------------
                         .requestMatchers(HttpMethod.GET, "/tarefas").permitAll()
                         // -----------------------------------------------------------------
