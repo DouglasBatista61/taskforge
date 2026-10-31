@@ -14,9 +14,9 @@ import lombok.Setter;
 public class ComentarioDTO {
 
     private Long id;
-
+    // ----------------- Exercício 5 modulo 8.1 ---------------
     @NotBlank(message = "A Descrição não pode ser em branco")
-    @Size(max = 255)
+    @Size(max = 500)
     private String descricao;
 
     @NotBlank(message = "Informe o autor")

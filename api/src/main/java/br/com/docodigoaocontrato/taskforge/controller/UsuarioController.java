@@ -22,8 +22,9 @@ public class UsuarioController {
     }
 
     // ---- 7.1: cadastro ----  POST /usuarios
+    // -------- Exercicio 3 modulo 8.1 ----------------------- @valid
     @PostMapping
-    public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioCadastroDTO dto) {
+    public ResponseEntity<UsuarioDTO> cadastrar(@Valid @RequestBody UsuarioCadastroDTO dto) {
         Optional<UsuarioDTO> criado = usuarioService.cadastrar(dto);
         if (criado.isEmpty()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
@@ -33,8 +34,9 @@ public class UsuarioController {
 
 
     // ---- 7.2: login ----  POST /usuarios/login
+    // -------- Exercicio 3 modulo 8.1 ----------------------- @valid
     @PostMapping("/login")
-    public ResponseEntity<LoginRespostaDTO> login(@RequestBody LoginDTO dto) {
+    public ResponseEntity<LoginRespostaDTO> login(@Valid @RequestBody LoginDTO dto) {
         Optional<LoginRespostaDTO> token = usuarioService.login(dto);
         if (token.isEmpty()){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

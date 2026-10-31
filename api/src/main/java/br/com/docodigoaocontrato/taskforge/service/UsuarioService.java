@@ -1,17 +1,17 @@
 package br.com.docodigoaocontrato.taskforge.service;
 
-import br.com.docodigoaocontrato.taskforge.dto.*;
+import br.com.docodigoaocontrato.taskforge.dto.LoginDTO;
+import br.com.docodigoaocontrato.taskforge.dto.LoginRespostaDTO;
+import br.com.docodigoaocontrato.taskforge.dto.UsuarioCadastroDTO;
+import br.com.docodigoaocontrato.taskforge.dto.UsuarioDTO;
 import br.com.docodigoaocontrato.taskforge.model.Usuario;
 import br.com.docodigoaocontrato.taskforge.repository.UsuarioRepository;
 import br.com.docodigoaocontrato.taskforge.security.JwtService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {

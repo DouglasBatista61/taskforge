@@ -1,12 +1,12 @@
 package br.com.docodigoaocontrato.taskforge.service;
 
 import br.com.docodigoaocontrato.taskforge.dto.TarefaDTO;
+import br.com.docodigoaocontrato.taskforge.exception.TarefaNaoEncontradaException;
 import br.com.docodigoaocontrato.taskforge.model.Tarefa;
 import br.com.docodigoaocontrato.taskforge.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TarefaService {
@@ -63,10 +63,14 @@ public class TarefaService {
 
     // NOVO · GET /tarefas/{id}
     // Optional = a caixa que pode vir vazia. A Service NAO sabe o que e 404.
-    public Optional<TarefaDTO> buscarPorId(Long id) {
+    // ------------------Desafio modulo 8.1 -------------------------------------------------
+
+    public TarefaDTO buscarTarefaPorId(Long id) {
         return tarefaRepository.findById(id)
-                .map(tarefa -> toDto(tarefa));
+                .map(tarefa -> toDto(tarefa))
+                .orElseThrow(() -> new TarefaNaoEncontradaException(id));
     }
+    // --------------------------------------------------------------------------------------
 
     public TarefaDTO criarTarefa(TarefaDTO tarefaDTO) {
         Tarefa tarefa = toEntity(tarefaDTO);
@@ -76,28 +80,30 @@ public class TarefaService {
     // NOVO · PUT /tarefas/{id}
     // Primeiro busca. Se nao existe, a caixa volta vazia.
     // O id vem da URL, nunca do JSON.
-    public Optional<TarefaDTO> atualizarTarefa(Long id, TarefaDTO tarefaDTO) {
-        Optional<Tarefa> encontrada = tarefaRepository.findById(id);
-        if (encontrada.isEmpty()) {
-            return Optional.empty();
-        }
 
-        Tarefa tarefa = encontrada.get();
-        tarefa.setNome(tarefaDTO.getNome());
-        tarefa.setPrioridade(tarefaDTO.getPrioridade());
-        tarefa.setConcluida(tarefaDTO.isConcluida());
+    // ------------------ Desafio extra modulo 8.1 -------------------------------------------------
 
-        return Optional.of(toDto(tarefaRepository.save(tarefa)));
+    public TarefaDTO atualizarTarefa(Long id, TarefaDTO tarefaDTO) {
+        Tarefa encontrada = tarefaRepository.findById(id)
+                .orElseThrow(() -> new TarefaNaoEncontradaException(id));
+
+        encontrada.setNome(tarefaDTO.getNome());
+        encontrada.setPrioridade(tarefaDTO.getPrioridade());
+        encontrada.setConcluida(tarefaDTO.isConcluida());
+
+        return toDto(tarefaRepository.save(encontrada));
+
     }
 
     // NOVO · DELETE /tarefas/{id}
     // Devolve se conseguiu. Quem traduz pra HTTP e a controller.
-    public boolean deletarTarefa(Long id) {
+    // ------------------ Desafio extra modulo 8.1 -------------------------------------------------
+
+    public void deletarTarefa(Long id) {
         if (!tarefaRepository.existsById(id)) {
-            return false;
+            throw new TarefaNaoEncontradaException(id);
         }
         tarefaRepository.deleteById(id);
-        return true;
     }
 
     private TarefaDTO toDto(Tarefa tarefa) {
