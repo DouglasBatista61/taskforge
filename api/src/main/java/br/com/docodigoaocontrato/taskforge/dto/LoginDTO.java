@@ -1,8 +1,6 @@
 package br.com.docodigoaocontrato.taskforge.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class LoginDTO {
 
+    // -------- Exercicio 3 modulo 8.1 -----------------------
     @NotBlank(message = "O email é obrigatório")
     private String email;
 

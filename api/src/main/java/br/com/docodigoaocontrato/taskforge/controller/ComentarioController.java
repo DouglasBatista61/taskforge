@@ -2,6 +2,7 @@ package br.com.docodigoaocontrato.taskforge.controller;
 
 import br.com.docodigoaocontrato.taskforge.dto.ComentarioDTO;
 import br.com.docodigoaocontrato.taskforge.service.ComentarioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +35,15 @@ public class ComentarioController {
     }
 
     @PostMapping
-    public ResponseEntity<ComentarioDTO> criarComentario(@RequestBody ComentarioDTO comentarioDTO) {
+    //-------------- Exercicio 5 modulo 8.1 --------------------- @Valid
+    public ResponseEntity<ComentarioDTO> criarComentario(@Valid @RequestBody ComentarioDTO comentarioDTO) {
         ComentarioDTO comentarioCriado = comentarioService.criarComentario(comentarioDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(comentarioCriado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ComentarioDTO> atualizarComentario(@PathVariable Long id, @RequestBody ComentarioDTO comentarioDTO) {
+    //-------------- Exercicio 5 modulo 8.1 --------------------- @Valid
+    public ResponseEntity<ComentarioDTO> atualizarComentario(@PathVariable Long id, @Valid @RequestBody ComentarioDTO comentarioDTO) {
         Optional<ComentarioDTO> atualizada = comentarioService.atualizarComentario(id, comentarioDTO);
         if (atualizada.isEmpty()) {
             return ResponseEntity.notFound().build();

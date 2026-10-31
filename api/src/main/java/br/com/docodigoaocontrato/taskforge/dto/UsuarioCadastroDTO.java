@@ -17,6 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UsuarioCadastroDTO {
 
+    // ---------------- Exercicio 3 modulo 8.1 ---------------------------------
     @NotBlank(message = "Nome obrigatório")
     private String nome;
 

@@ -2,12 +2,12 @@ package br.com.docodigoaocontrato.taskforge.controller;
 
 import br.com.docodigoaocontrato.taskforge.dto.TarefaDTO;
 import br.com.docodigoaocontrato.taskforge.service.TarefaService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 // A controller so traduz HTTP <-> Java. Os "if" daqui escolhem o codigo HTTP, nao regra.
 @RestController
@@ -46,43 +46,40 @@ public class TarefaController {
             @RequestParam(required = false) Boolean concluida, Integer prioridade) {
         return ResponseEntity.ok(tarefaService.buscarUrgentes(prioridade, concluida));
     }
-
-
     // ------------------------------------------------------------------------------
 
     // GET /tarefas/2 -> 200 | 404
+    // ------------------Desafio modulo 8.1 ------------------------------------------
+
     @GetMapping("/{id}")
     public ResponseEntity<TarefaDTO> buscarPorId(@PathVariable Long id) {
-        Optional<TarefaDTO> tarefa = tarefaService.buscarPorId(id);
-        if (tarefa.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(tarefa.get());
+        TarefaDTO tarefa = tarefaService.buscarTarefaPorId(id);
+        return ResponseEntity.ok(tarefa);
     }
+    // ------------------------------------------------------------------------------
 
-    // POST /tarefas -> 201
+    // Novo POST /tarefas -> 201
+    //-------------- Exercicio 1 modulo 8.1 --------------------- @Valid
     @PostMapping
-    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody TarefaDTO tarefaDTO) {
+    public ResponseEntity<TarefaDTO> criarTarefa(@Valid @RequestBody TarefaDTO tarefaDTO) {
         TarefaDTO tarefaCriada = tarefaService.criarTarefa(tarefaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(tarefaCriada);
     }
 
-    // PUT /tarefas/2 -> 200 | 404
+    // Novo PUT /tarefas/2 -> 200 | 404
+    //-------------- Exercicio 2 modulo 8.1 --------------------- @Valid
+    // ------------------Desafio Extra modulo 8.1 ------------------------------------------
     @PutMapping("/{id}")
-    public ResponseEntity<TarefaDTO> atualizarTarefa(@PathVariable Long id, @RequestBody TarefaDTO tarefaDTO) {
-        Optional<TarefaDTO> atualizada = tarefaService.atualizarTarefa(id, tarefaDTO);
-        if (atualizada.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(atualizada.get());
+    public ResponseEntity<TarefaDTO> atualizarTarefa(@PathVariable Long id, @Valid @RequestBody TarefaDTO tarefaDTO) {
+        TarefaDTO atualizada = tarefaService.atualizarTarefa(id, tarefaDTO);
+        return ResponseEntity.ok(atualizada);
     }
 
-    // DELETE /tarefas/2 -> 204 | 404
+    // Novo DELETE /tarefas/2 -> 204 | 404
+    // ------------------Desafio Extra modulo 8.1 ------------------------------------------
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarTarefa(@PathVariable Long id) {
-        if (!tarefaService.deletarTarefa(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.noContent().build();
+       tarefaService.deletarTarefa(id);
+       return ResponseEntity.noContent().build();
     }
 }
