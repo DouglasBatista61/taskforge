@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/comentarios")
-@Tag(name = "Comentarios", description = "Comentarios feitos por usuários") // ------ Exercicio 5 modulo 9.1 -----
+@Tag(name = "Comentarios") // ------ Exercicio 5 modulo 9.1 -----
 public class ComentarioController {
 
     private final ComentarioService comentarioService;

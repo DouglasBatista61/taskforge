@@ -37,9 +37,6 @@ public class TarefaDTO {
 
     private Boolean concluida;
 
-    public Boolean isConcluida() {
-        return false;
-    }
 
 
 }
