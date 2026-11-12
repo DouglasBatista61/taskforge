@@ -9,7 +9,10 @@ import java.util.Date;
 
 public class JwtService {
 
-    private static final String SEGREDO = "asdkasjdlsad-213213sdsa-21321sqd-sadas";
+    // Em produção, o segredo vem da variável de ambiente JWT_SECRET.
+    // Na sua máquina (sem a variável), cai no valor de desenvolvimento.
+    private static final String SEGREDO = System.getenv()
+            .getOrDefault("JWT_SECRET", "asdkasjdlsad-213213sdsa-21321sqd-sadas");
     private final SecretKey chave = Keys.hmacShaKeyFor(SEGREDO.getBytes(StandardCharsets.UTF_8));
 
     public String gerarToken(String email, String nome) {

@@ -1,5 +1,6 @@
 package br.com.docodigoaocontrato.taskforge.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,6 +13,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -19,6 +21,12 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
+
+    // As origens que podem chamar a API. Em produção, a variável de ambiente
+    // APP_CORS_ORIGINS traz o endereço do front publicado (ex.: https://taskforge.pages.dev).
+    // Na sua máquina, sem a variável, vale o front local (localhost:5173).
+    @Value("${app.cors.origins:http://localhost:5173}")
+    private String corsOrigins;
 
     public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
@@ -63,7 +71,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173"));     // o front (React, na 9.2)
+        // uma ou mais origens, separadas por vírgula (vindas de APP_CORS_ORIGINS)
+        config.setAllowedOrigins(Arrays.stream(corsOrigins.split(",")).map(String::trim).toList());
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 
