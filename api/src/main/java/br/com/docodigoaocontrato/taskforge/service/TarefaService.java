@@ -89,7 +89,7 @@ public class TarefaService {
 
         encontrada.setNome(tarefaDTO.getNome());
         encontrada.setPrioridade(tarefaDTO.getPrioridade());
-        encontrada.setConcluida(tarefaDTO.isConcluida());
+        encontrada.setConcluida(tarefaDTO.getConcluida());
 
         return toDto(tarefaRepository.save(encontrada));
 
@@ -113,6 +113,6 @@ public class TarefaService {
 
     private Tarefa toEntity(TarefaDTO tarefaDTO) {
         return new Tarefa(tarefaDTO.getNome(), tarefaDTO.getPrioridade(),
-                tarefaDTO.isConcluida());
+                tarefaDTO.getConcluida());
     }
 }

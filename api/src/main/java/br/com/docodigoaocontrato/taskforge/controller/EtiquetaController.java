@@ -5,6 +5,8 @@ import br.com.docodigoaocontrato.taskforge.dto.EtiquetaDTO;
 import br.com.docodigoaocontrato.taskforge.dto.TarefaDTO;
 import br.com.docodigoaocontrato.taskforge.model.Etiqueta;
 import br.com.docodigoaocontrato.taskforge.service.EtiquetaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/etiquetas")
+@Tag(name = "Etiquetas", description = "Etiquetas que identificam prioridades por cor")
 public class EtiquetaController {
 
     private final EtiquetaService etiquetaService;
@@ -24,7 +27,7 @@ public class EtiquetaController {
 
 
     // ------------------- Desafio 6.2 -----------------------------------------------------------
-
+    @Operation(summary = " Busca uma etiqueta por ID")
     @GetMapping("/{id}")
     public ResponseEntity<EtiquetaDTO> buscarPorId(@PathVariable Long id) {
         Optional<EtiquetaDTO> etiqueta = etiquetaService.buscarPorId(id);
@@ -33,7 +36,7 @@ public class EtiquetaController {
         }
         return ResponseEntity.ok(etiqueta.get());
     }
-
+    @Operation(summary = " Atualiza status da etiqueta")
     @PutMapping("/{id}")
     public ResponseEntity<EtiquetaDTO> atualizarEtiqueta(@PathVariable Long id, @RequestBody EtiquetaDTO etiquetaDTO) {
         Optional<EtiquetaDTO> atualizada = etiquetaService.atualizarEtiqueta(id, etiquetaDTO);
@@ -44,7 +47,7 @@ public class EtiquetaController {
     }
 
     //--------------------------------------------------------------------------------------------
-
+    @Operation(summary = " Cria uma etiqueta")
     @PostMapping
     public ResponseEntity<EtiquetaDTO> criarEtiqueta(@RequestBody EtiquetaDTO etiquetaDTO) {
         EtiquetaDTO etiquetaCriada = etiquetaService.criarEtiqueta(etiquetaDTO);
@@ -52,7 +55,7 @@ public class EtiquetaController {
     }
 
     // ------------------- Desafio 6.3 -----------------------------------------------------------
-
+    @Operation(summary = " Deleta uma etiqueta")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarEtiqueta(@PathVariable Long id) {
         if (!etiquetaService.deletarEtiqueta(id)) {
@@ -61,7 +64,7 @@ public class EtiquetaController {
             return ResponseEntity.noContent().build();
         }
     }
-
+    @Operation(summary = " Busca uma etiqueta por cor")
     @GetMapping
     public List<EtiquetaDTO> buscarPorCor(
             @RequestParam(required = false) String cor) {
