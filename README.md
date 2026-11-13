@@ -7,7 +7,8 @@
 
 
 
-![Tela do TaskForge] <img width="700" alt="login" src="https://github.com/user-attachments/assets/84165926-6bd4-426c-b63e-e66982421a11" />
+![Tela do TaskForge]
+<img width="700" alt="login" src="https://github.com/user-attachments/assets/84165926-6bd4-426c-b63e-e66982421a11" />
 
 ## Sobre o projeto
 
