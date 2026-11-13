@@ -1,33 +1,19 @@
-# TaskForge
+# 🛠️ TaskForge
 
-Projeto do curso **Do Código ao Contrato**. Uma API de tarefas construída aula a aula, começando por um app de console e virando uma API completa que roda na internet.
+> API de gerenciamento de tarefas com autenticação JWT, validação e tratamento de erros padronizado.
 
-Este repositório é o seu. Você vai fazer as entregas de cada aula aqui, por Pull Request.
+🚀 **[App no ar](https://taskforge-web-template-49i.pages.dev)** · 📖 **[Swagger no ar](https://taskforge-ajfj.onrender.com/swagger-ui/index.html)**
 
-## Pré-requisitos
+![Tela do TaskForge](taskforge-web-template/docs/login.png)
 
-- Java 26 instalado (confira com `java -version` no terminal).
-- IntelliJ IDEA ou VS Code.
-- Git configurado, conta no GitHub e chave SSH adicionada no GitHub (o curso usa SSH).
+## Sobre o projeto
 
-## Como rodar
+O TaskForge é uma aplicação full stack para gerenciar tarefas: cria, lista, atualiza e remove tarefas, com filtro de urgentes (pendentes de prioridade 1).
+A API REST é protegida por autenticação com token, valida os dados de entrada e devolve erros em um formato padronizado (ex.: 404 com status, mensagem e campos).
+Está em produção, com backend e banco hospedados na nuvem e frontend publicado na edge, com documentação interativa via Swagger.
 
-No IntelliJ: abra o arquivo `TaskForge.java` e clique em **Run**.
+## Stack
 
-No terminal, dentro da pasta do projeto:
+**Java** · **Spring Boot** · **React** · **PostgreSQL** · **Docker** · **Render** (backend) · **Cloudflare** (frontend)
 
-```bash
-java TaskForge.java
-```
-
-Você vai ver o TaskForge pedir os dados de uma tarefa e imprimir um cartão com ela.
-
-## Como entregar as tarefas
-
-O passo a passo completo está no arquivo **[COMO-ENTREGAR.md](COMO-ENTREGAR.md)**. Leia antes da sua primeira entrega.
-
-Resumo: você cria um branch, faz a alteração, abre um Pull Request dentro deste seu repositório e cola o link do PR no canal de entregas do Discord.
-
----
-
-Curso Do Código ao Contrato · Lander Andrade
+> ⏳ O backend roda no plano gratuito do Render: a primeira requisição pode levar cerca de 50s para "acordar" o servidor.
