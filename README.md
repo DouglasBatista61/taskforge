@@ -1,10 +1,11 @@
+
 # 🛠️ TaskForge
 
 > API de gerenciamento de tarefas com autenticação JWT, validação e tratamento de erros padronizado.
 
 🚀 **[App no ar](https://taskforge-web-template-49i.pages.dev)** · 📖 **[Swagger no ar](https://taskforge-ajfj.onrender.com/swagger-ui/index.html)**
 
-![Tela do TaskForge](taskforge-web-template/docs/login.png)
+![Tela do TaskForge](<img width="1960" height="1520" alt="login" src="https://github.com/user-attachments/assets/84165926-6bd4-426c-b63e-e66982421a11" />)
 
 ## Sobre o projeto
 
