@@ -45,6 +45,7 @@ public class SecurityConfig {
                         // -----------------------------------------------------------------
 
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/tarefas/{id}").permitAll()
 
                         // ------------- Exercicio 5 modulo 7.3 ----------------------------
@@ -54,6 +55,7 @@ public class SecurityConfig {
                         // ------------- Desafio modulo 7.3 --------------------------------
                         .requestMatchers(HttpMethod.GET, "/ping").permitAll()
                         // -----------------------------------------------------------------
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sm ->
