@@ -8,7 +8,7 @@
 
 
 ![Tela do TaskForge]
-<img width="700" alt="login" src="https://github.com/user-attachments/assets/84165926-6bd4-426c-b63e-e66982421a11" />
+<p align="center"><img width="700" alt="login" src="https://github.com/user-attachments/assets/84165926-6bd4-426c-b63e-e66982421a11" /></p>
 
 ## Sobre o projeto
 
