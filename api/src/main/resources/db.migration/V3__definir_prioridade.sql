@@ -1,0 +1,3 @@
+
+ALTER TABLE tarefa
+    ALTER COLUMN prioridade SET DEFAULT 3;
