@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 // O formato do JSON que entra e que sai da API.
 // A entidade espelha a TABELA; o DTO espelha o JSON.
 @Getter
@@ -37,6 +39,7 @@ public class TarefaDTO {
 
     private Boolean concluida;
 
+    private LocalDateTime dataCriacao;
 
 
 }

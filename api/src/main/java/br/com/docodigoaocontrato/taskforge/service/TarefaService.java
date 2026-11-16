@@ -108,7 +108,7 @@ public class TarefaService {
 
     private TarefaDTO toDto(Tarefa tarefa) {
         return new TarefaDTO(tarefa.getId(), tarefa.getNome(),
-                tarefa.getPrioridade(), tarefa.getConcluida());
+                tarefa.getPrioridade(), tarefa.getConcluida(), tarefa.getDataCriacao());
     }
 
     private Tarefa toEntity(TarefaDTO tarefaDTO) {
