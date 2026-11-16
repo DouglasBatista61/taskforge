@@ -41,5 +41,19 @@ public class TarefaDTO {
 
     private LocalDateTime dataCriacao;
 
+    // Construtor de compatibilidade com exercícios anteriores
+    public TarefaDTO(
+            Long id,
+            String nome,
+            Integer prioridade,
+            Boolean concluida
+    ) {
+        this.id = id;
+        this.nome = nome;
+        this.prioridade = prioridade;
+        this.concluida = concluida;
+        this.dataCriacao = null;
+    }
+
 
 }
